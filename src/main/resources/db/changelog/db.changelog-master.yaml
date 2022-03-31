@@ -1,0 +1,196 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-pharmacy.yaml
+  - changeSet:
+      id: creation_tables
+      author: SergeyFomin
+      changes:
+        - createTable:
+            tableName: Employees
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: first_Name
+                  type: varchar(255)
+              - column:
+                  name: middle_Name
+                  type: varchar(255)
+              - column:
+                  name: last_Name
+                  type: varchar(255)
+              - column:
+                  name: salary
+                  type: Decimal
+              - column:
+                  name: id_account
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_emp_acc
+                    reference: Account(id)
+        - createTable:
+            tableName: Account
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: login
+                  type: varchar(255)
+              - column:
+                  name: password
+                  type: char
+              - column:
+                  name: id_role
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_acc_role
+                    references: Roles(id)
+        - createTable:
+            tableName: Roles
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: display_name
+                  type: varchar(255)
+        - createTable:
+            tableName: Account_roles
+            columns:
+              - column:
+                  name: id_account
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_accrole_acc
+                    references: Account(id)
+              - column:
+                  name: id_role
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_accrole_role
+                    references: Role(id)
+        - createTable:
+            tableName: Sales
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: date
+                  type: timestamp
+              - column:
+                  name: price
+                  type: decimal
+              - column:
+                  name: id_account
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_sale_acc
+                    references: Account(id)
+              - column:
+                  name: id_product
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_sale_product
+                    references: Product(id)
+        - createTable:
+            tableName: Product_sales
+            columns:
+              - column:
+                  name: id_product
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_ps_product
+                    references: Product(id)
+              - column:
+                  name: id_sale
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_ps_sale
+                    references: Sale(id)
+        - createTable:
+            tableName: Product
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: display_name
+                  type: varchar(255)
+              - column:
+                  name: description
+                  type: varchar(255)
+              - column:
+                  name: price
+                  type: decimal
+              - column:
+                  name: id_provider
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_product_provider
+                    references: Product_providers(id_provider)
+        - createTable:
+            tableName: Product_providers
+            columns:
+              - column:
+                  name: id_product
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_pp_product
+                    references: Product(id)
+              - column:
+                  name: id_provider
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_pp_povider
+                    references: Provider(id)
+        - createTable:
+            tableName: Provider
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: adress
+                  type: varchar(255)
+#  - changeSet:
+#      id: insert_in_tables
+#     author: SergeyFomin
+#      changes:
+
+
+
+
+
+
+
+
+

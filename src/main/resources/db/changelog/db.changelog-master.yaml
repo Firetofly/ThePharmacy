@@ -179,7 +179,7 @@ databaseChangeLog:
                   name: name
                   type: varchar(255)
               - column:
-                  name: adress
+                  name: address
                   type: varchar(255)
 #  - changeSet:
 #      id: insert_in_tables

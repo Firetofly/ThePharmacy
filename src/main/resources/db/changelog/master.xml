@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+      http://www.liquibase.org/xml/ns/pro
+      http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+    <changeSet  author="Sergey fomin"  id="create-tables">
+        <createTable tableName="Role">
+            <column name="id"  type="BIGINT">
+                <constraints nullable="false"  primaryKey="true"  unique="true"/>
+            </column>
+            <column name="displayName" type="varchar(255)"/>
+        </createTable>
+        <createTable tableName="Account">
+            <column  name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="login" type="VARCHAR(255)"/>
+            <column name="password" type="CHAR"/>
+            <column name="id_role" type="BIGINT">
+                <constraints foreignKeyName="fk_acc_role" nullable="false" references="Role(id)"/>
+            </column>
+        </createTable>
+        <createTable tableName="Account_roles">
+            <column  name="id_account" type="BIGINT">
+                <constraints foreignKeyName="fk_acc_accrole" references="Account(id)"/>
+            </column>
+            <column  name="id_role" type="BIGINT">
+                <constraints foreignKeyName="fk_role_accrole" references="Role(id)"/>
+            </column>
+        </createTable>
+        <createTable tableName="Employees">
+            <column name="id"  type="BIGINT">
+                <constraints nullable="false"  primaryKey="true"  unique="true"/>
+            </column>
+            <column name="fullName"  type="VARCHAR(255)" />
+            <column name="salary" type="Decimal"/>
+            <column name="id_account" type="BIGINT">
+                    <constraints foreignKeyName="fk_emp_acc" references="Account(id)"/>
+            </column>
+        </createTable>
+        <createTable tableName="Provider">
+            <column  name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="display_name" type="varchar(255)"/>
+            <column name="address" type="varchar(255)"/>
+        </createTable>
+        <createTable tableName="Product">
+            <column  name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="display_name" type="varchar(255)"/>
+            <column name="description" type="varchar(255)"/>
+            <column name="price" type="decimal"/>
+            <column name="id_provider" type="BIGINT">
+                <constraints foreignKeyName="fk_product_provider" references="Provider(id)"/>
+            </column>
+        </createTable>
+        <createTable tableName="Sale">
+            <column  name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="date" type="timestamp"/>
+            <column name="price" type="decimal"/>
+            <column name="id_account" type="BIGINT">
+                <constraints foreignKeyName="fk_sale_acc" references="Account(id)"/>
+            </column>
+            <column name="id_product" type="BIGINT">
+                <constraints foreignKeyName="fk_sale_product" references="Product(id)"/>
+            </column>
+        </createTable>
+        <createTable tableName="Product_sales">
+            <column name="id_product" type="BIGINT">
+                <constraints foreignKeyName="fk_prod_sale" references="Product(id)"/>
+            </column>
+            <column name="id_sale" type="BIGINT">
+                <constraints foreignKeyName="fk_sale_prod" references="Sale(id)"/>
+            </column>
+        </createTable>
+        <createTable tableName="Product_providers">
+            <column name="id_product" type="BIGINT">
+                <constraints foreignKeyName="fk_prod_provider" references="Product(id)"/>
+            </column>
+            <column name="id_provider" type="BIGINT">
+                <constraints foreignKeyName="fk_providers_prod" references="Provider(id)"/>
+            </column>
+        </createTable>
+<!--        <rollback>
+            <dropTable tableName="person"/>
+        </rollback>-->
+    </changeSet>
+</databaseChangeLog>

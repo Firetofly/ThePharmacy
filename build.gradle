@@ -1,0 +1,49 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.5'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'org.liquibase.gradle' version '2.1.1'
+}
+
+group = 'com.pharmacy'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.liquibase:liquibase-core'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	// https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
+	implementation 'org.springframework.data:spring-data-jpa:2.6.1'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok:1.18.20'
+	runtimeOnly 'com.h2database:h2'
+	liquibaseRuntime 'org.liquibase:liquibase-core:4.2.2'
+	liquibaseRuntime 'org.liquibase:liquibase-groovy-dsl:2.1.1'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	liquibaseRuntime 'com.h2database:h2:1.4.199'
+	liquibaseRuntime 'org.liquibase:liquibase-gradle-plugin:2.1.1'
+}
+//apply plugin: "org.liquibase.gradle"
+
+liquibase {
+	activities {
+		main {
+			changeLogFile 'src/main/resources/db/changelog/master.xml'
+			url 'jdbc:h2:tcp://localhost/~/test'
+			username 'sa'
+			password ''
+			logLevel 'debug'
+			driver 'org.h2.Driver'
+		}
+		runList = "main"
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

@@ -18,7 +18,7 @@ import java.util.Set;
 public class Employee {
 
     @Id
-    //@GeneratedValue(GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private BigInteger id;
 
     private String firstName;
@@ -29,13 +29,11 @@ public class Employee {
 
     private String salary;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="id_account", referencedColumnName = "id")
-    private Account account;
+    @ToString.Exclude
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name="id_account")
+    private Account empAccount;
 
-
-   /* @Column(name = "Id_account")
-    private BigInteger idAccount;*/
 
 
 }

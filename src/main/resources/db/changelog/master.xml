@@ -89,8 +89,15 @@
                 <constraints foreignKeyName="fk_providers_prod" references="Provider(id)"/>
             </column>
         </createTable>
-<!--        <rollback>
-            <dropTable tableName="person"/>
-        </rollback>-->
+    </changeSet>
+    <changeSet id="create-sequence" author="Fomin3-SA">
+        <createSequence sequenceName="sequence_id"
+                cacheSize="371717"
+                cycle="false"
+                incrementBy="1"
+                minValue="1"
+                maxValue="1000000"
+                ordered="true"
+                startValue="1"/>
     </changeSet>
 </databaseChangeLog>

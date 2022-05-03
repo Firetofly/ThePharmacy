@@ -16,17 +16,17 @@ import java.util.Set;
 public class Role{
 
     @Id
-    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private BigInteger id;
 
     @Column(name = "Display_name")
     private String displayName;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "Account_roles",joinColumns = @JoinColumn(name = "id_Account"),
-    inverseJoinColumns = @JoinColumn(name = "id_role"))
     @ToString.Exclude
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "Account_roles",
+        joinColumns = @JoinColumn(name = "id_role"),
+        inverseJoinColumns = @JoinColumn(name = "id_account"))
     private Set<Account> roleAccounts;
-
-        
 }

@@ -14,7 +14,7 @@ import java.util.Set;
 @EqualsAndHashCode
 @ToString
 @Entity
-@Table(name = "Accounts")
+@Table(name = "Account")
 public class Account {
 
     @Id

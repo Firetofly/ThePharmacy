@@ -12,28 +12,30 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode
-@ToString
 @Entity
 @Table(name = "Employees")
 public class Employee {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private BigInteger id;
 
-    private String firstName;
-
-    private String middleName;
-
-    private String lastName;
+    @Column(name = "fullname")
+    private String fullName;
 
     private String salary;
 
-    @ToString.Exclude
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name="id_account")
     private Account empAccount;
 
-
-
+    @Override
+    public String toString() {
+        return "Employee{" +
+            "id=" + id +
+            ", fullName='" + fullName + '\'' +
+            ", salary='" + salary + '\'' +
+            '}';
+    }
 }

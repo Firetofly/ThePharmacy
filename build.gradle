@@ -20,19 +20,14 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
 	implementation 'org.springframework.data:spring-data-jpa:2.6.1'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok:1.18.20'
-	runtimeOnly 'com.h2database:h2'
+	implementation 'org.projectlombok:lombok:1.18.24'
+	implementation 'com.h2database:h2'
 	liquibaseRuntime 'org.liquibase:liquibase-core:4.2.2'
 	liquibaseRuntime 'org.liquibase:liquibase-groovy-dsl:2.1.1'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	liquibaseRuntime 'com.h2database:h2:1.4.199'
 	liquibaseRuntime 'org.liquibase:liquibase-gradle-plugin:2.1.1'
-	// https://mvnrepository.com/artifact/org.springframework/spring-context
-	implementation 'org.springframework:spring-context:5.3.19'
-	// https://mvnrepository.com/artifact/org.springframework/spring-core
-	implementation 'org.springframework:spring-core:5.3.19'
-	// https://mvnrepository.com/artifact/org.springframework/spring-beans
-	implementation 'org.springframework:spring-beans:5.3.18'
+
 
 
 }

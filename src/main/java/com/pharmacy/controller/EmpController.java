@@ -1,5 +1,6 @@
 package com.pharmacy.controller;
 
+import com.pharmacy.mapping.EmpMapper;
 import com.pharmacy.model.Employee;
 import com.pharmacy.service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
@@ -25,19 +27,22 @@ public class EmpController {
     EmpService empService;
 
     @GetMapping
-    public List<Employee> getAllEmployee(){
-        System.out.println("AllEmployees:" +empService.getAllEmployees());
-        return empService.getAllEmployees();
+    public ResponseEntity<List<Employee>> getAllEmployee(){
+        return ResponseEntity.ok((empService.getAllEmployees()));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getEmployee(@PathVariable BigInteger id){
-        System.out.println("Controller data: "+empService.getById(id));
-        return ResponseEntity.ok(empService.getById(id));
+        Employee tmpEmp= new Employee();
+        tmpEmp.setFullName("fff");
+        empService.addNewEmployee(tmpEmp);
+        System.out.println("Controller data: "+tmpEmp);
+        return ResponseEntity.ok(tmpEmp);
     }
 
     @PostMapping
     public String addEmployee(@RequestBody Employee employee){
+
         return empService.addNewEmployee(employee);
     }
 }

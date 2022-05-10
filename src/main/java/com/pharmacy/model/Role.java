@@ -6,11 +6,7 @@ import javax.persistence.*;
 import java.math.BigInteger;
 import java.util.Set;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@EqualsAndHashCode
-@ToString
+@Data
 @Entity
 @Table(name = "Roles")
 public class Role{

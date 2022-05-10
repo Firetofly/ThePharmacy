@@ -7,7 +7,7 @@
       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
       http://www.liquibase.org/xml/ns/pro
       http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
-    <changeSet  author="Sergey fomin"  id="create-tables">
+    <!--<changeSet  author="Sergey fomin"  id="create-tables">
         <createTable tableName="Role">
             <column name="id"  type="BIGINT">
                 <constraints nullable="false"  primaryKey="true"  unique="true"/>
@@ -89,8 +89,8 @@
                 <constraints foreignKeyName="fk_providers_prod" references="Provider(id)"/>
             </column>
         </createTable>
-    </changeSet>
-    <changeSet id="create-sequence" author="Fomin3-SA">
+    </changeSet>-->
+<!--    <changeSet id="create-sequence" author="Fomin3-SA">
         <createSequence sequenceName="sequence_id"
                 cacheSize="371717"
                 cycle="false"
@@ -99,5 +99,17 @@
                 maxValue="1000000"
                 ordered="true"
                 startValue="1"/>
+    </changeSet>-->
+    <changeSet id="change Employees' salary type" author="Fomin3-SA">
+        <createTable tableName="Employees">
+            <column name="id"  type="BIGINT">
+                <constraints nullable="false"  primaryKey="true"  unique="true"/>
+            </column>
+            <column name="full_name"  type="VARCHAR(255)" />
+            <column name="salary" type="Decimal"/>
+            <column name="id_account" type="BIGINT">
+                <constraints foreignKeyName="fk_emp_acc" references="Account(id)"/>
+            </column>
+        </createTable>
     </changeSet>
 </databaseChangeLog>

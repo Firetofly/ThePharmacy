@@ -1,6 +1,7 @@
 package com.pharmacy.model;
 
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,12 +22,8 @@ import javax.persistence.Table;
 import java.math.BigInteger;
 import java.util.List;
 
+@Data
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@EqualsAndHashCode
-@ToString
 @Table(name = "Product")
 public class Product {
     @Id
@@ -36,16 +33,14 @@ public class Product {
     @Column(name = "display_Name")
     private String displayName;
 
-    @ToString.Exclude
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinTable(
-        name = "Product_sales",
+        name = "product_sales",
         joinColumns = @JoinColumn(name = "id_product"),
         inverseJoinColumns = @JoinColumn(name = "id_sale")
     )
     private List<Sale> sales;
 
-    @ToString.Exclude
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinTable(name = "Product_providers",
         joinColumns = @JoinColumn(name = "id_product"),

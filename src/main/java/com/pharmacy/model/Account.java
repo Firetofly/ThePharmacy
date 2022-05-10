@@ -8,11 +8,7 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.Set;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@EqualsAndHashCode
-@ToString
+@Data
 @Entity
 @Table(name = "Account")
 public class Account {

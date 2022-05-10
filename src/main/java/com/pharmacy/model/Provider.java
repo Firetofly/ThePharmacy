@@ -1,6 +1,7 @@
 package com.pharmacy.model;
 
 import liquibase.pro.packaged.S;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,11 +22,7 @@ import javax.persistence.Table;
 import java.math.BigInteger;
 import java.util.List;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@EqualsAndHashCode
-@ToString
+@Data
 @Entity
 @Table(name = "Provider")
 public class Provider {

@@ -20,6 +20,7 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
 	implementation 'org.springframework.data:spring-data-jpa:2.6.1'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
 	compileOnly 'org.projectlombok:lombok:1.18.24'
 	annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
@@ -33,6 +34,11 @@ dependencies {
 	liquibaseRuntime 'org.liquibase:liquibase-gradle-plugin:2.1.1'
 	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+	// https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+	// https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine
+	testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+
 
 
 
@@ -53,6 +59,7 @@ liquibase {
 	}
 }
 
-tasks.named('test') {
+test{
 	useJUnitPlatform()
 }
+

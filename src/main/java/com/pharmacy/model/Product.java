@@ -26,7 +26,9 @@ import java.util.List;
 @Entity
 @Table(name = "Product")
 public class Product {
+
     @Id
+    @ToString.Exclude
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private BigInteger id;
 

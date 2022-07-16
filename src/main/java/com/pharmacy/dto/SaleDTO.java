@@ -1,24 +1,28 @@
 package com.pharmacy.dto;
 
 import com.pharmacy.model.Account;
+import com.pharmacy.model.Product;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Builder
-public class EmpDTO implements Serializable {
+public class SaleDTO {
 
     @ToString.Exclude
     private BigInteger id;
 
-    private String fullName;
+    private LocalDate date;
 
-    private BigDecimal Salary;
+    private BigDecimal price;
 
-    private Account empAccount;
+    private Account saleAcc;
+
+    private List<Product> productList;
 }

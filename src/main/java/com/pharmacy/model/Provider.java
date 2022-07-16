@@ -28,6 +28,7 @@ import java.util.List;
 public class Provider {
 
     @Id
+    @ToString.Exclude
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private BigInteger id;
 

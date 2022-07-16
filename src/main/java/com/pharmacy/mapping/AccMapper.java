@@ -5,11 +5,15 @@ import com.pharmacy.model.Account;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface AccMapper {
 
-    AccDTO toAccDto(Account account);
+    AccDTO toDto(Account entity);
 
-    Account toAccModel(AccDTO accDTO);
+    List<AccDTO> toDtoList(List<Account> listEntity);
+
+
 
 }

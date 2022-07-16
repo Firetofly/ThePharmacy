@@ -12,6 +12,7 @@ import java.util.Set;
 public class Role{
 
     @Id
+    @ToString.Exclude
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private BigInteger id;
 

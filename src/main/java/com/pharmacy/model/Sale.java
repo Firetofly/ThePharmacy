@@ -21,6 +21,7 @@ import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 @Data
 @Entity
@@ -28,6 +29,7 @@ import java.util.Set;
 public class Sale {
     
     @Id
+    @ToString.Exclude
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private BigInteger id;
 
@@ -47,5 +49,5 @@ public class Sale {
         joinColumns = @JoinColumn(name = "id_product"),
         inverseJoinColumns = @JoinColumn(name = "id_sale")
     )
-    private Set<Product> products;
+    private List<Product> products;
 }

@@ -1,22 +1,21 @@
 package com.pharmacy.dto;
 
-import com.pharmacy.model.Provider;
-import com.pharmacy.model.Sale;
+import com.pharmacy.model.Account;
 import lombok.Builder;
+import lombok.Data;
 import lombok.ToString;
 
 import java.math.BigInteger;
-import java.util.List;
+import java.util.Set;
 
+@Data
 @Builder
-public class ProdDTO {
+public class RoleDTO {
 
     @ToString.Exclude
     private BigInteger id;
 
     private String displayName;
 
-    private List<Sale> sales;
-
-    private List<Provider> providers;
+    private Set<Account> accounts;
 }

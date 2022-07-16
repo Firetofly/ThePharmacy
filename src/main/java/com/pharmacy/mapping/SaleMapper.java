@@ -1,16 +1,16 @@
 package com.pharmacy.mapping;
 
-import com.pharmacy.dto.EmpDTO;
-import com.pharmacy.model.Employee;
+import com.pharmacy.dto.SaleDTO;
+import com.pharmacy.model.Sale;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 
 import java.util.List;
 
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
-public interface EmpMapper {
+public interface SaleMapper {
 
-    EmpDTO toDTO(Employee entity);
-    List<EmpDTO> toDtoList(List<Employee> entityList);
+    SaleDTO toDto(Sale entity);
 
+    List<SaleDTO> toDtoList(List<Sale> entityList);
 }

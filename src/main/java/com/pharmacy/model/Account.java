@@ -14,6 +14,7 @@ import java.util.Set;
 public class Account {
 
     @Id
+    @ToString.Exclude
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private BigInteger id;
 
